@@ -107,7 +107,6 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			Hello
 			<div class="sidebar">
 				<ul>
 					<li>
@@ -139,8 +138,7 @@
 						<a href="logout.php">
 							<span class="item">Logout</span>
 						</a>
-					</li>
-					
+					</li>		
 				</ul>
 			</div>
 		</div>	
@@ -185,22 +183,14 @@
 						if($winner == 'n')
 						{
 						}	
-						//echo "<br><br>";
 						echo('<input type = "button" class="btn" name = "newgamebtn" value = "Play Again" id = "go" onclick = "window.location.href=\'welcome.php\'">');
-						//echo '<hr/><div class="wline"></div>';
-						
+	
 						include 'database.php';
-						//$sql="select * from `users`";
 						$sql="SELECT * FROM `users` u INNER JOIN `score_table` s ON u.sno = s.sno";
 						$result=mysqli_query($conn,$sql);
 						$num=mysqli_num_rows($result);
-						
-						//echo $num;
 						echo "<h2 class='h-s'>Leaderboard</h2>";
-						//$row=mysqli_fetch_assoc($result);
-						//echo var_dump($row);
 						echo'	
-						
 							<table id="leader">
 							<tr>
 								<th>Name</th>
@@ -221,34 +211,10 @@
 								
 								//<td>" . $row["score"]. "</td>";
 							}
-							echo "</table>";
-						/*for ($i=0; $i < $num; $i++) 
-						{ 
-							$row=mysqli_fetch_assoc($result);
-							echo $row['username'] ." has scored " . $row['score'] . ". The session is " .$row['status'];
-							echo "<br>";
-							if($row['status']=='activate')
-							{
-								echo "The session time in is " . $row['s_in'] ;
-							}
-							else
-							{
-								echo "The session time in was " . $row['s_in'] . " and session time in was ". $row['s_out'];
-							}
-							echo "<br><br>";
-						}	*/			
+							echo "</table>";		
 					?>				
 				</form>
 			</div>
 		</div>
-		<!--<button class="btn" onclick="window.location.href='others.php'">Users details</button>
-		<button class="btn" onclick="window.location.href='manage.php'">Profile management</button>
-		<button class='btn' onclick="window.location.href='logout.php'">LOGOUT</button>
-		<br><br>
-		
-		<div class="container signin">
-			<p>Want to logout? <a href="/project1/logout.php">Logout</a>.</p>
-		</div>
-					-->
 	</body>
 </html>
