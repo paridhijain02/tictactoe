@@ -11,7 +11,6 @@
 	$winner = 'n';
 	$xwin=0;
 	$box = array('','','','','','','','','');
-	//if (isset($_POST["next"]))
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 	{
 		$box[0] = $_POST["box0"];
@@ -33,9 +32,9 @@
 			include 'database.php';
 			$username=$_SESSION['username'];
 			$sql1="SELECT sno FROM `users` WHERE `username`='$username'";
-            $result1=mysqli_query($conn,$sql1);
-            $row=mysqli_fetch_assoc($result1);
-            $sno_other_table=$row['sno'];
+			$result1=mysqli_query($conn,$sql1);
+			$row=mysqli_fetch_assoc($result1);
+			$sno_other_table=$row['sno'];
 			$sql="UPDATE `score_table` SET `score` = score+1 WHERE `sno` = '$sno_other_table'";
 			$result=mysqli_query($conn,$sql);
 		}
@@ -71,10 +70,8 @@
 				$sno_other_table=$row['sno'];
 				$sql="UPDATE `score_table` SET `loss` = loss+1 WHERE `sno` = '$sno_other_table'";
 				$result=mysqli_query($conn,$sql);
-			}
-			
+			}	
 		}				
-		
 		if ($winner == 'n' && $blank==0)
 		{
 			$winner = 't';
@@ -97,7 +94,6 @@
 		$sql="UPDATE `score_table` SET `total` = score+loss+draw WHERE `sno` = '$sno_other_table'";
 		$result=mysqli_query($conn,$sql);
 	}
-	//<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 ?>
 
 <!DOCTYPE html>
@@ -149,9 +145,6 @@
 			</div>
 		</div>	
 
-
-
-		
 		<div id="game">
 			<div class="box2">
 				<form name = "ticktactoe" method = "post" action = '/tictactoe/welcome.php'>
@@ -191,8 +184,6 @@
 						}
 						if($winner == 'n')
 						{
-							//echo "<br>";
-							//echo('<input type = "submit" class="btn" name = "next" value = "Next Move" id = "go">');
 						}	
 						//echo "<br><br>";
 						echo('<input type = "button" class="btn" name = "newgamebtn" value = "Play Again" id = "go" onclick = "window.location.href=\'welcome.php\'">');
