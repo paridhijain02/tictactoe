@@ -12,27 +12,21 @@
     {
         include 'database.php';
         $username=$_SESSION['username'];
-        //$username=$_POST['username'];
         $oldpass=$_POST['oldpass'];
         $newpass=$_POST['newpass'];
         $sql="Select * FROM `users` WHERE username= '$username'";
         
         $result=mysqli_query($conn,$sql);  
-        //$numexist=mysqli_num_rows($result);
         $row = mysqli_fetch_assoc($result);
-        //echo $numexist;       
-        //if($numexist==1)
         if($row['password']==$oldpass)
         {
             echo "<script>alert('Your PASSWORD is changed')</script>";
-            //echo "Your PASSWORD is changed";
             $sql2="UPDATE `users` SET `password` = '$newpass' WHERE `users`.`username` = '$username'";
             $result=mysqli_query($conn,$sql2);
         }
         else 
         {
             echo "<script>alert('INCORRECT PASSWORD')</script>";
-            //echo "INCORRECT PASSWORD";
         }
     }
 ?>
