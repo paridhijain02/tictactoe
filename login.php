@@ -10,9 +10,7 @@
         if($row['status']=="activate")
         {
             $count=$count+1;
-        }
-        //echo $row['status'];
-        
+	}
     }
     if($count>0)
     {
@@ -29,9 +27,8 @@
         include 'database.php';
         $username=$_POST['username'];
         $password=$_POST['password'];
-        //UPDATE `users` SET `s_in` = 'CURRENT_TIMESTAMP' WHERE `users`.`username` = 'first';
-        //SELECT * FROM `users` WHERE DATE(s_in) = CURDATE()
-        $sql1="UPDATE `users` SET `s_in` = CURDATE() WHERE `users`.`username` = '$username'";
+        
+	$sql1="UPDATE `users` SET `s_in` = CURDATE() WHERE `users`.`username` = '$username'";
         $result1=mysqli_query($conn,$sql1);
 
         $sql2="UPDATE `users` SET `s_in` = CURTIME() WHERE `users`.`username` = '$username'";
@@ -76,7 +73,6 @@
                 $status='activate';
                 if($login)
                 {
-                    //echo ' <strong>Success!</strong> You are logged in.';
                     $sql="UPDATE `users` SET `status` = '$status' WHERE `users`.`username` = '$username'";
                     $result=mysqli_query($conn,$sql);
                 }
