@@ -1,9 +1,11 @@
 <?php
-    $server='localhost';
+    $servername='localhost';
     $username='root';
     $password="";
+    $conn = mysqli_connect($servername, $username, $password);
+    mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS tictactoe");
     $database="tictactoe";
-    $conn=mysqli_connect($server,$username,$password,$database);
+    $conn=mysqli_connect($servername,$username,$password,$database);
     if($conn)
     {
         //echo "Database success ";
@@ -12,5 +14,4 @@
     {
         echo "Database unsuccessful ";
     }
-
 ?>
