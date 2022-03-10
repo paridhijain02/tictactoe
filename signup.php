@@ -32,10 +32,6 @@
             {
                 $showerror = "Only letters and white space allowed in Fullname";
             }
-            elseif(strlen($contact)!=0 || strlen($contact)!=0) 
-            {
-                $showerror = "10 numbers for contact";
-            }
             elseif(!preg_match("/^[0-9-' ]*$/",$contact)) 
             {
                 $showerror = "Only numbers are allowed in contact";
@@ -47,21 +43,27 @@
 
             elseif(($password==$cpassword) )
             {
+               mysqli_autocommit($conn,FALSE);
                 $sql="INSERT INTO `users` (`username`,`fullname`,`contact`, `password`, `regis_date`, `status`) VALUES ('$username','$fullname','$contact', '$password', CURRENT_TIMESTAMP, '$status')";
                 $result=mysqli_query($conn,$sql);
+
                 $sql1="SELECT sno FROM `users` WHERE `username`='$username'";
                 $result1=mysqli_query($conn,$sql1);
                 $row=mysqli_fetch_assoc($result1);
                 $sno_other_table=$row['sno'];
                 $zero=0;
+                mysqli_commit($conn);
                 $sql2="INSERT INTO `score_table` (`sno`,`score`) VALUES ('$sno_other_table','$zero')";
                 $result2=mysqli_query($conn,$sql2);
-
+                if($username=="ayushi")
+                {
+                    mysqli_rollback($conn);
+                }
+                mysqli_commit($conn);
                 if($result)
                 {
                    $showalert= true;
-                   $username=$fullname=$contact="";
-
+                   $username=$fullname=$contact="";   
                 }
             }
             else
