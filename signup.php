@@ -32,7 +32,7 @@
             {
                 $showerror = "Only letters and white space allowed in Fullname";
             }
-            elseif(strlen($contact)!=0 || strlen($contact)!=0) 
+            elseif(strlen($contact)!=0 || strlen($contact)!=10) 
             {
                 $showerror = "10 numbers for contact";
             }
